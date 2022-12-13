@@ -2,9 +2,13 @@ import cherrypy
 import random
 import string
 
-class Generator(object):
+class Home:
     @cherrypy.expose
     def index(self):
+        return"<a href='/links'>Rutas</a"     
+    
+    @cherrypy.expose
+    def links(self):
         return"""
         <div align="center">
         </div>
@@ -18,20 +22,29 @@ class Generator(object):
         <div align="center">
         </div>
         <h1 align="center">=========================================================================== </h1>
-        <form method="get" action="generate">
-        <input type="text" value="10" name="length" />
-        <button type="prueba2">Let it rain!</button>
-        <tittle>Saludos</title>
-        <body>
-        Ingrese su nombre
-        <input type="text" name"nombre"/>
-        <input type="submit"/>
-        </form>
-        </body>
-        """
+        <ul>
+            <li><a href='/'>Home</a></li>
+            <li><a href='/contact'>Contact</a></li>
+            <li><a href='/information'>Information</a></li>
+            <li><a href='/generate'>Generate</a></li>
+            <li><a href='/icci'>Icci</a></li>
+            
+        """ 
+
+    @cherrypy.expose
+    def contact(self):
+        return"<a href='/links'>Rutas</a" 
+    
+    @cherrypy.expose
+    def icci(self):
+        return "https://www.inf.unap.cl/index.php/tag/unap/"     
+
+    @cherrypy.expose
+    def information(self):
+        return"<a href='/links'>Rutas</a"
+
     @cherrypy.expose
     def generate(self, length=10):
         return''.join(random.sample(string.hexdigits, int(length)))  
 
-if __name__ == "__main__" :
-    cherrypy.quickstart(Generator())         
+cherrypy.quickstart(Home())         
