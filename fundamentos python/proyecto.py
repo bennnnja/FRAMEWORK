@@ -98,21 +98,21 @@ class Home:
         </div>
         </html>
         </body>
-            <form action="/formulario" method="POST">
+            <form action="Validar">
                 <h2>Registrarse</h2>
                 <label for="Nombre">Nombre</label>
-                <input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre"/>
+                <input type="text" name="Nombre" placeholder="Ingrese su nombre"/>  
                 <br>
                 <label for="Apellido">Apellido</label>
-                <input type="text" id="Apellido" name="Apellido" placeholder="Ingrese su apellido"/>
+                <input type="text" name="Apellido" placeholder="Ingrese su apellido"/> 
                 <br>
                 <label for="Email">Email</label>
-                <input type="email" id="Email" name="Email" placeholder="Ingrese su email"/>
+                <input type="email" name="Email" placeholder="Ingrese su email"/>   
                 <br>
                 <label for="Contrasena">Contrasena</label>
-                <input type="password" id="Contrasena" name="Contrasena" placeholder="Ingrese su contrasena"/><br>
+                <input type="password" name="Contrasena" placeholder="Ingrese su contrasena"/><br>
                 <button type="submit">Registrarse</button>
-            </form>
+            </form>    
         </body>
         </html>
         """
@@ -136,23 +136,23 @@ class Home:
             <form action="/formulario" method="POST">
                 <h2>Registrarse</h2>
                 <label for="Nombre">Nombre</label>
-                <input type="text" id="Nombre" name="Nombre" placeholder="Ingrese su nombre"/>
+                <input type="text" name="Nombre" placeholder="Ingrese su nombre"/>
                 <br>
                 <label for="Apellido">Apellido</label>
-                <input type="text" id="Apellido" name="Apellido" placeholder="Ingrese su apellido"/>
+                <input type="text" name="Apellido" placeholder="Ingrese su apellido"/>
                 <br>
                 <label for="anho">Anho de carrera</label>
-                <input type="number" id="anho" name="anho" placeholder="Ingrese el anho de su carrera"/>
+                <input type="number" name="anho" placeholder="Ingrese el anho de su carrera"/>
                 <br>
                 <h3>Selecione el tipo de publicacion</h3>
                 <label for="Pregunta">Pregunta</label>
-                <input type="radio" id="Pregunta" name="Pregunta"/>
+                <input type="radio" name="Pregunta"/>
                 <br>
                 <label for="Aviso">Aviso</label>
-                <input type="radio" id="Aviso" name="Aviso"/>
+                <input type="radio" name="Aviso"/>
                 <br>
                 <label for="Foto">Ingrese una imagen</label>
-                <input type="file" id="Foto" name="Foto"/>
+                <input type="file" name="Foto"/>
                 <br>
                 <label for="descripcion">Ingrese una descripcion</label><br>
                 <textarea cols="100" rows="10" id="descripcion" placeholder="Ingrese descripcion de la publicacion" name="descripcion"></textarea>
@@ -162,4 +162,27 @@ class Home:
         </body>
         </html>
         """
+    @cherrypy.expose
+    def Validar(self,Nombre,Apellido,Email,Contrasena):
+        if Nombre == "":
+           ValidarN="Ingrese un nombre valido"
+        else:
+            ValidarN="""Hola,%s!""" % Nombre
+        
+        if Apellido == "":
+           ValidarA="Ingrese un apellido valido"
+        else:
+            ValidarA="""Hola,%s!""" % Apellido
+        
+        if Email == "":
+           ValidarE="Ingrese un Email valido"
+        else:
+            ValidarE="""Hola,%s!""" % Email
+        
+        if Contrasena == "":
+           ValidarC="Ingrese una contrasena valido"
+        else:
+            ValidarC="Contrasena valida"        
+        return ValidarN,ValidarA, ValidarE,ValidarC
+   
 cherrypy.quickstart(Home())         
