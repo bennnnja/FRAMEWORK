@@ -164,25 +164,31 @@ class Home:
         """
     @cherrypy.expose
     def Validar(self,Nombre,Apellido,Email,Contrasena):
-        if Nombre == "":
-           ValidarN="Ingrese un nombre valido"
-        else:
-            ValidarN="""Hola,%s!""" % Nombre
+        i=0
+        while(i==0):
+
+          if Nombre == "":
+           validacion="Ingrese un nombre"
+           i==1
         
-        if Apellido == "":
-           ValidarA="Ingrese un apellido valido"
-        else:
-            ValidarA="""Hola,%s!""" % Apellido
+          if Apellido == "":
+            validacion="Ingrese un apellido"
+            i==1
         
-        if Email == "":
-           ValidarE="Ingrese un Email valido"
-        else:
-            ValidarE="""Hola,%s!""" % Email
+          if Email.endswith("@estudiantesunap.cl"):
+                hola=1
+          else:
+            validacion="El correo ingresado no es correcto"
+            i==1
+
+          if Contrasena == "":
+            validacion="Ingrese una contrasena" 
+            i==1                    
+        return validacion
+                
         
-        if Contrasena == "":
-           ValidarC="Ingrese una contrasena valido"
-        else:
-            ValidarC="Contrasena valida"        
-        return ValidarN,ValidarA, ValidarE,ValidarC
-   
+        
+        
+        ###ValidarN+" "+ValidarA+"  Tu email es: "+ ValidarE+ " y  "+ValidarC
+    
 cherrypy.quickstart(Home())         
