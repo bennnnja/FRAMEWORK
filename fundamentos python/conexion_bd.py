@@ -41,8 +41,12 @@ cursorInsert = conexion.cursor()
 nombre='Eduardo'
 apellido='Ramirez'
 email='edura@estudiantesunap.cl'
+contrasenha='servidor'
+nom_usuario= 'dnausidnjas'
 
-consulta = "Insert into usuarios(nombre, apellido, email) values ("+nombre,apellido,email+")"
+consulta = "Insert into usuarios(nombre, apellido, email, contrasena, nom_usuario) values ('{}','{}','{}','{}','{}')".format(nombre,apellido,email,contrasena,nom_usuario)
+
+#cursorInsert.execute(consulta,nombre,apellido,email,contrasenha,nom_usuario)
 
 cursorInsert.execute(consulta)
 
